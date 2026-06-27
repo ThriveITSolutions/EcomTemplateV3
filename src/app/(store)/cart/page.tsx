@@ -137,7 +137,7 @@ export default function CartPage() {
               href="/products"
               className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-black mt-4"
             >
-              <ArrowRight className="w-4 h-4" className="rotate-180" />
+              <ArrowRight className="w-4 h-4 rotate-180" />
               Continue Shopping
             </Link>
           </div>
