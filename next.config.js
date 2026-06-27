@@ -3,7 +3,6 @@ const nextConfig = {
   serverActions: {
     bodySizeLimit: '10mb',
   },
-  typedRoutes: true,
   images: {
     remotePatterns: [
       {
