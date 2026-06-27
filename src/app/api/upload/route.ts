@@ -131,7 +131,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!result.success) {
       return NextResponse.json(
-        { error: result.error || 'Delete failed' },
+        { error: (result as any).error || 'Delete failed' },
         { status: 500 }
       );
     }
