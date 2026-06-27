@@ -250,7 +250,7 @@ export async function POST(request: NextRequest) {
             totalAmount: item.price.toNumber() * item.quantity,
             variantOptions: item.variant?.options,
             variantImage: item.variant?.imageUrl,
-          })),
+          })) as any,
         },
         
         // Analytics
