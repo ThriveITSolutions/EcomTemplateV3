@@ -266,7 +266,10 @@ export default function CheckoutPage() {
                         )}
                       </div>
                       <div className="w-10 h-10 rounded bg-gray-100 flex items-center justify-center">
-                        {typeof method.icon === 'function' ? <method.icon /> : <method.icon className="w-5 h-5" />}
+                        {(() => {
+                          const Icon = method.icon as any;
+                          return <Icon className="w-5 h-5" />;
+                        })()}
                       </div>
                       <span className="font-medium">{method.name}</span>
                     </label>
