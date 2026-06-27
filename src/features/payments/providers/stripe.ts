@@ -27,7 +27,7 @@ export class StripeProvider implements PaymentProvider {
     
     this.client = new Stripe(key, {
       apiVersion: '2024-06-20',
-    });
+    } as any);
   }
 
   async createPayment(params: CreatePaymentParams): Promise<PaymentResult> {
@@ -120,13 +120,13 @@ export class StripeProvider implements PaymentProvider {
       const refund = await this.client.refunds.create({
         payment_intent: session.payment_intent as string,
         amount: Math.round(params.amount * 100), // Convert to cents
-        reason: params.reason || 'customer_request',
+        reason: (params.reason || 'requested_by_customer') as any,
       });
 
       return {
         success: true,
         refundId: refund.id,
-        status: refund.status,
+        status: refund.status || 'unknown',
       };
     } catch (error) {
       console.error('Stripe refundPayment error:', error);

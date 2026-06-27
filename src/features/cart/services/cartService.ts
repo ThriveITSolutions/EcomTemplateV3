@@ -404,13 +404,14 @@ class CartService {
     if (!customerCart) {
       customerCart = await prisma.cart.create({
         data: { customerId },
-      });
+        include: { items: true },
+      }) as any;
     }
 
     // Merge items
     for (const guestItem of guestCart?.items || []) {
-      const existingItem = customerCart.items.find(
-        item => item.productId === guestItem.productId && item.variantId === guestItem.variantId
+      const existingItem = customerCart!.items.find(
+        (item: any) => item.productId === guestItem.productId && item.variantId === guestItem.variantId
       );
 
       if (existingItem) {
@@ -423,7 +424,7 @@ class CartService {
         // Add new item
         await prisma.cartItem.create({
           data: {
-            cartId: customerCart.id,
+            cartId: customerCart!.id,
             productId: guestItem.productId,
             variantId: guestItem.variantId,
             quantity: guestItem.quantity,

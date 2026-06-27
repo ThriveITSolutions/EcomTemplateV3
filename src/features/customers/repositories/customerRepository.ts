@@ -99,8 +99,8 @@ class CustomerRepository {
     return prisma.customer.create({
       data: {
         userId: data.userId,
-        dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : undefined,
-        gender: data.gender,
+        dateOfBirth: (data as any).dateOfBirth ? new Date((data as any).dateOfBirth) : undefined,
+        gender: (data as any).gender,
       },
     });
   }

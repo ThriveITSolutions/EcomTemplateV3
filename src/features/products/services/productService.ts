@@ -228,7 +228,7 @@ class ProductService {
       page: 1,
       limit: 20,
       ...filters,
-    });
+    } as any);
   }
 
   // Get products by brand
@@ -251,7 +251,7 @@ class ProductService {
       page: 1,
       limit: 20,
       ...filters,
-    });
+    } as any);
   }
 
   // Bulk update products

@@ -187,7 +187,7 @@ class ProductRepository {
           },
           _count: { select: { reviews: true } },
         },
-      }) as Promise<ProductWithRelations[]>,
+      }) as unknown as Promise<ProductWithRelations[]>,
       prisma.product.count({ where }),
     ]);
 
@@ -345,7 +345,7 @@ class ProductRepository {
         isActive: true,
         isPublished: true,
         isFeatured: true,
-        featuredProducts: {
+        FeaturedProduct: {
           some: {
             section,
             isActive: true,
@@ -375,7 +375,7 @@ class ProductRepository {
           take: 5,
         },
       },
-    }) as Promise<ProductWithRelations[]>;
+    }) as unknown as Promise<ProductWithRelations[]>;
   }
 
   // Get related products
@@ -408,7 +408,7 @@ class ProductRepository {
           take: 5,
         },
       },
-    }) as Promise<ProductWithRelations[]>;
+    }) as unknown as Promise<ProductWithRelations[]>;
   }
 
   // Search products
