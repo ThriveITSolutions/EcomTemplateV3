@@ -241,8 +241,8 @@ export async function POST(request: NextRequest) {
         // Items
         items: {
           create: cart.items.map(item => ({
-            productId: item.productId,
-            variantId: item.variantId,
+            product: { connect: { id: item.productId } },
+            ...(item.variantId ? { variant: { connect: { id: item.variantId } } } : {}),
             name: item.product.name,
             sku: item.product.sku,
             price: item.price,
