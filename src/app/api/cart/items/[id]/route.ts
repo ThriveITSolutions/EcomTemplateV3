@@ -53,7 +53,7 @@ export async function PUT(
     const cart = await prisma.cart.findUnique({
       where: { id: cartItem.cartId },
       include: {
-        items: { include: { product: true } },
+        items: { include: { product: true, variant: true } },
         coupon: true,
       },
     });
@@ -143,7 +143,7 @@ export async function DELETE(
     const cart = await prisma.cart.findUnique({
       where: { id: cartItem.cartId },
       include: {
-        items: { include: { product: true } },
+        items: { include: { product: true, variant: true } },
         coupon: true,
       },
     });
