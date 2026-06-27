@@ -29,7 +29,12 @@ async function main() {
 
   for (const perm of permissions) {
     await prisma.permission.upsert({
-      where: { resource_action: perm },
+      where: {
+        resource_action: {
+          resource: perm.resource,
+          action: perm.action,
+        }
+      },
       update: {},
       create: perm,
     });
@@ -107,7 +112,7 @@ async function main() {
     await prisma.category.upsert({
       where: { slug: cat.slug },
       update: {},
-      create: { ...cat, path: \`/\${cat.slug}\` },
+      create: { ...cat, path: `/${cat.slug}` },
     });
   }
   console.log('Created product categories');
