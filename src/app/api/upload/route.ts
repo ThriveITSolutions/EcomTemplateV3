@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
 
     if (!result.success) {
       return NextResponse.json(
-        { error: result.error || 'Upload failed' },
+        { error: (result as any).error || 'Upload failed' },
         { status: 500 }
       );
     }
